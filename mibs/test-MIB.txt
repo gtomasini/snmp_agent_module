@@ -1,0 +1,45 @@
+test-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+	DisplayString
+                FROM RFC1213-MIB
+    enterprises, TimeTicks
+                FROM RFC1155-SMI
+    OBJECT-TYPE
+                FROM RFC-1212;
+
+myEnterprise   OBJECT IDENTIFIER ::= { enterprises 37267 }
+sysTestGroup   OBJECT IDENTIFIER ::= { myEnterprise 1 }
+
+sysTestOSName OBJECT-TYPE
+    SYNTAX      DisplayString
+    ACCESS      read-only
+    STATUS      mandatory
+    DESCRIPTION
+                "OS name."
+    ::= { sysTestGroup 1 }
+
+sysTestUpTimeTicks OBJECT-TYPE
+    SYNTAX      TimeTicks
+    ACCESS      read-only
+    STATUS      mandatory
+    DESCRIPTION
+                "Time ticks since Startup."
+    ::= { sysTestGroup 2 }
+
+sysTestCurrentProcsNum OBJECT-TYPE
+    SYNTAX      INTEGER
+    ACCESS      read-only
+    STATUS      mandatory
+    DESCRIPTION
+                "number of proccess running now"
+    ::= { sysTestGroup 3 }
+
+sysTestTestVar1 OBJECT-TYPE
+    SYNTAX      INTEGER
+    ACCESS      read-write
+    STATUS      mandatory
+    DESCRIPTION
+                "test variable 1"
+    ::= { sysTestGroup 4 }
+END
